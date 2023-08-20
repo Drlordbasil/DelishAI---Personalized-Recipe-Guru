@@ -1,0 +1,12 @@
+The package requirements for this Python program are:
+- requests
+- beautifulsoup4
+- tkinter
+
+You can create a requirements.txt file with these package requirements by running the following command:
+
+```
+echo requests >> requirements.txt
+echo beautifulsoup4 >> requirements.txt
+echo tkinter >> requirements.txt
+```
