@@ -24,23 +24,30 @@ class RecipeRecommendationSystem:
         self.present_recommendations()
 
     def collect_user_information(self):
-        messagebox.showinfo("Recipe Recommendation System", "Welcome to the Recipe Recommendation System!")
-        user_name = tk.simpledialog.askstring("Recipe Recommendation System", "Please enter your name:")
+        messagebox.showinfo("Recipe Recommendation System",
+                            "Welcome to the Recipe Recommendation System!")
+        user_name = tk.simpledialog.askstring(
+            "Recipe Recommendation System", "Please enter your name:")
         self.user_data["name"] = user_name
 
-        cuisine = tk.simpledialog.askstring("Recipe Recommendation System", "Please enter your preferred cuisine:")
+        cuisine = tk.simpledialog.askstring(
+            "Recipe Recommendation System", "Please enter your preferred cuisine:")
         self.user_data["cuisine"] = cuisine
 
-        cooking_time = tk.simpledialog.askstring("Recipe Recommendation System", "Please enter your preferred cooking time:")
+        cooking_time = tk.simpledialog.askstring(
+            "Recipe Recommendation System", "Please enter your preferred cooking time:")
         self.user_data["cooking_time"] = cooking_time
 
-        calorie_count = tk.simpledialog.askstring("Recipe Recommendation System", "Please enter your desired calorie count:")
+        calorie_count = tk.simpledialog.askstring(
+            "Recipe Recommendation System", "Please enter your desired calorie count:")
         self.user_data["calorie_count"] = calorie_count
 
-        allergies = tk.simpledialog.askstring("Recipe Recommendation System", "Please enter any allergies you have (comma-separated):")
+        allergies = tk.simpledialog.askstring(
+            "Recipe Recommendation System", "Please enter any allergies you have (comma-separated):")
         self.user_data["allergies"] = allergies
 
-        ingredients = tk.simpledialog.askstring("Recipe Recommendation System", "Please enter the ingredients you have (comma-separated):")
+        ingredients = tk.simpledialog.askstring(
+            "Recipe Recommendation System", "Please enter the ingredients you have (comma-separated):")
         self.user_data["ingredients"] = ingredients.split(",")
 
     def collect_recipe_data(self):
@@ -78,14 +85,16 @@ class RecipeRecommendationSystem:
         recipe_name = soup.find("h1").text
 
         ingredients = soup.find_all("li", class_="ingredient")
-        ingredient_list = [ingredient.text.strip() for ingredient in ingredients]
+        ingredient_list = [ingredient.text.strip()
+                           for ingredient in ingredients]
 
         preparation_steps = soup.find_all("li", class_="step")
         steps_list = [step.text.strip() for step in preparation_steps]
 
         cooking_time = soup.find("time", class_="prepTime").text.strip()
 
-        recipe_data = Recipe(recipe_name, ingredient_list, steps_list, cooking_time)
+        recipe_data = Recipe(recipe_name, ingredient_list,
+                             steps_list, cooking_time)
         return recipe_data
 
     def generate_recommendations(self):
@@ -102,7 +111,8 @@ class RecipeRecommendationSystem:
         return recommendation_data
 
     def present_recommendations(self):
-        messagebox.showinfo("Recipe Recommendation System", f"Hello {self.user_data['name']}! Here are your personalized recipe recommendations:")
+        messagebox.showinfo("Recipe Recommendation System",
+                            f"Hello {self.user_data['name']}! Here are your personalized recipe recommendations:")
 
         for i, recipe in enumerate(self.user_data["recommendations"], start=1):
             recommendation_str = f"Recipe {i}:\n"
@@ -114,7 +124,8 @@ class RecipeRecommendationSystem:
             for j, step in enumerate(recipe.steps, start=1):
                 recommendation_str += f"{j}. " + step + "\n"
             recommendation_str += "--------\n"
-            messagebox.showinfo("Recipe Recommendation System", recommendation_str)
+            messagebox.showinfo(
+                "Recipe Recommendation System", recommendation_str)
 
 
 recipe_system = RecipeRecommendationSystem()
