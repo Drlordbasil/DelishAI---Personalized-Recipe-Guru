@@ -128,5 +128,24 @@ class RecipeRecommendationSystem:
                 "Recipe Recommendation System", recommendation_str)
 
 
-recipe_system = RecipeRecommendationSystem()
+class RecipeSystemModifier:
+    def __init__(self):
+        self.recipe_system = RecipeRecommendationSystem()
+
+    def modify_recipe_system(self):
+        self.make_user_interface_changes()
+        self.optimize_algorithm()
+
+    def make_user_interface_changes(self):
+        # Add code for enhancing user interface
+        pass
+
+    def optimize_algorithm(self):
+        # Add code for algorithm optimization
+        self.recipe_data.sort(key=lambda x: len(x.ingredients))
+
+
+modifier = RecipeSystemModifier()
+modifier.modify_recipe_system()
+recipe_system = modifier.recipe_system
 recipe_system.start()
